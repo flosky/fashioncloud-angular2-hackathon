@@ -4,9 +4,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'user-post',
   template: `
-    <div>
-        <b><span style='cursor: pointer;' (click)='goToPost(post.id)'>{{post.title}}</span></b><br />
-        <div>{{post.body}}</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b><span style='cursor: pointer;' (click)='goToPost(post.id)'>{{post.title}}</span></b>
+        </div>
+        <div class="panel-body">
+            <div>{{post.body}}</div>
+        </div>
     </div>
   `
 })

@@ -15,7 +15,7 @@ import { UserAlbums } from './userAlbums';
     <div><user-detail key="Email" value={{user.email}}></user-detail></div>
     <div><user-detail key="Phone" value={{user.phone}}></user-detail></div>
     <div><user-detail key="Website" value={{user.website}}></user-detail></div>
-    <div><user-posts [posts]='posts'></user-posts></div>
+    <div><user-posts *ngIf='posts.length > 0' [posts]='posts'></user-posts></div>
   `
 })
 export class UserComponent {
