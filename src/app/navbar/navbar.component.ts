@@ -37,7 +37,7 @@ export class navbarComponent {
             },
             {
                 name: 'Posts',
-                link: 'posts'
+                link: 'post'
             },
             {
                 name: 'Albums',
