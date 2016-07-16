@@ -36,6 +36,14 @@ export class UserApiService {
             .catch(this.handleError);
     }
 
+    getUserPostsObservable (userId): Observable<any> {
+        const userUrl = `http://jsonplaceholder.typicode.com/users/${userId}/posts`;
+
+        return this.http.get(userUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let user = res.json();
         return user || {};
