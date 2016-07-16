@@ -17,7 +17,7 @@ describe('Post', () => {
     expect(console.log).not.toHaveBeenCalled();
 
     post.ngOnInit();
-    expect(getPost).toHaveBeenCalled;
+    expect(console.log).toHaveBeenCalledWith('Post Page');
   }));
 
 });
