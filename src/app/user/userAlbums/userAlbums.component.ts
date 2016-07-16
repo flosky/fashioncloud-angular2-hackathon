@@ -6,10 +6,10 @@ import { UserApiService } from '../../shared';
 @Component({
   selector: 'user-albums',
   providers: [UserApiService],
-  templateUrl: './albums.component.html',
-  styleUrls: ['./albums.component.scss']
+  templateUrl: './userAlbums.component.html',
+  styleUrls: ['./userAlbums.component.scss']
 })
-export class AlbumsComponent {
+export class UserAlbums {
 
   @Input() userId: number;
   private sub: any;
