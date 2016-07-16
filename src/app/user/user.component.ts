@@ -15,7 +15,7 @@ import { UserApiService } from '../shared';
 })
 export class UserComponent {
 
-    private userId: string;
+    private userId: number;
     private sub: any;
     private user: any = {};
 
