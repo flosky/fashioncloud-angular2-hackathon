@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserItemComponent } from './user.item';
 
 @Component({
-  selector: 'user-profile',
-  styleUrls: ['./user.component.scss'],
+  selector: 'fc-user-list',
+  directives: [UserItemComponent],
+  styleUrls: ['./users.component.scss'],
   template: `
-    <h3>User {{userId}}</h3>
+
+        <fc-user-list-item [User]=""></fc-user-list-item>
   `
 })
-export class UserComponent {
+export class UsersComponent {
 
     private userId: string;
     private sub: any;
@@ -18,14 +21,8 @@ export class UserComponent {
     }
 
     ngOnInit() {
-        console.log('Init User Profile');
+        console.log('Init User list');
 
-        this.sub = this.route.params.subscribe(params => {
-            let id = params['id']; // (+) converts string 'id' to a number
-            this.userId = id;
-
-            console.log('User Id:', id);
-        });
     }
 
     ngOnDestroy() {
