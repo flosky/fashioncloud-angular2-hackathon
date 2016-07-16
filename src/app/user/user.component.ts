@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserApiService } from '../shared';
 import { UserDetail } from './userDetail';
+import { UserPosts } from './posts';
 
 @Component({
   selector: 'user-profile',
   providers: [UserApiService],
-  directives: [UserDetail],
+  directives: [UserDetail, UserPosts],
   styleUrls: ['./user.component.scss'],
   template: `
     <h3>{{user.name}}</h3>
     <div><user-detail key="Email" value={{user.email}}></user-detail></div>
     <div><user-detail key="Phone" value={{user.phone}}></user-detail></div>
     <div><user-detail key="Website" value={{user.website}}></user-detail></div>
+    <div><user-posts [posts]='posts'></user-posts></div>
   `
 })
 export class UserComponent {
@@ -20,6 +22,7 @@ export class UserComponent {
     private userId: string;
     private sub: any;
     private user: any = {};
+    private posts: any = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -33,6 +36,7 @@ export class UserComponent {
             this.userId = params['id'];
 
             this.subscribeToGetUser(this.userId);
+            this.subscribeToGetUserPosts(this.userId);
 
             // this.getUserDataPromise(this.userId)
             //     .then((userData) => {
@@ -59,11 +63,19 @@ export class UserComponent {
     subscribeToGetUser(userId) {
         this.api.getUserDataObservable(userId)
             .subscribe((user) => {
-                console.log('Success Observable:', user);
                 this.user = user;
             }, (error) => {
                 console.log('Error Observable:', error);
-            })
+            });
+    }
+
+    subscribeToGetUserPosts(userId) {
+        this.api.getUserPostsObservable(userId)
+            .subscribe((posts) => {
+                this.posts = posts;
+            }, (error) => {
+                console.log('Error Observable:', error);
+            });
     }
 
 }
