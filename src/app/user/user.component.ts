@@ -15,7 +15,7 @@ import { UserAlbums } from './userAlbums';
     <div><user-detail key="Email" value={{user.email}}></user-detail></div>
     <div><user-detail key="Phone" value={{user.phone}}></user-detail></div>
     <div><user-detail key="Website" value={{user.website}}></user-detail></div>
-    <div><user-posts *ngIf='posts.length > 0' [posts]='posts'></user-posts></div>
+    <div><user-posts [onSubmit]='onSubmit' [notification]='notification' *ngIf='posts.length > 0' [posts]='posts'></user-posts></div>
   `
 })
 export class UserComponent {
@@ -24,6 +24,8 @@ export class UserComponent {
     private sub: any;
     private user: any = {};
     private posts: any = [];
+    public onSubmit;
+    public notification;
 
     constructor(
         private route: ActivatedRoute,
@@ -33,20 +35,13 @@ export class UserComponent {
     ngOnInit() {
         console.log('Init User Profile');
 
+        this.onSubmit = this.addPost.bind(this);
+
         this.sub = this.route.params.subscribe(params => {
             this.userId = params['id'];
+
             this.subscribeToGetUser(this.userId);
             this.subscribeToGetUserPosts(this.userId);
-
-            // this.getUserDataPromise(this.userId)
-            //     .then((userData) => {
-            //         if (userData) {
-            //             this.user = userData;
-            //         }
-            //     })
-            //     .catch((error) => {
-            //         console.log('Error:', error);
-            //     });
         });
     }
 
@@ -72,10 +67,17 @@ export class UserComponent {
     subscribeToGetUserPosts(userId) {
         this.api.getUserPostsObservable(userId)
             .subscribe((posts) => {
-                this.posts = posts;
+                this.posts = [...posts];
             }, (error) => {
                 console.log('Error Observable:', error);
             });
+    }
+
+    addPost(post) {
+        this.posts = [...this.posts, post];
+        this.notification = {
+            status: 'success'
+        }
     }
 
 }
