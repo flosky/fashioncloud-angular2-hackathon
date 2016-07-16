@@ -13,7 +13,7 @@ import '../style/app.scss';
 @Component({
   selector: 'my-app', // <my-app></my-app>
   providers: [ApiService],
-  directives: [navbarComponent,ROUTER_DIRECTIVES],
+  directives: [navbarComponent, ROUTER_DIRECTIVES],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

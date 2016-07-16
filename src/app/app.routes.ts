@@ -8,7 +8,7 @@ import { UsersComponent } from './users';
 import { AlbumComponent } from './album';
 
 export const routes: RouterConfig = [
-  { path: '', component: HomeComponent },
+  { path: '', component: UsersComponent },
   { path: 'about', component: AboutComponent},
   { path: 'post/:id' , component: PostComponent},
   { path: 'user/:id', component:  UserComponent },
