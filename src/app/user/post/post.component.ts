@@ -1,17 +1,22 @@
 import { Component, Input } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-post',
-  directives: [...ROUTER_DIRECTIVES],
   template: `
     <div>
-        <b><a [routerLink]="['/post', {id: post.id}]">{{post.title}}</a></b><br />
-        {{post.body}}
+        <b><span style='cursor: pointer;' (click)='goToPost(post.id)'>{{post.title}}</span></b><br />
+        <div>{{post.body}}</div>
     </div>
   `
 })
 export class UserPost {
 
     @Input() post: any;
+
+    constructor(private router: Router) {}
+
+    goToPost(postId) {
+        this.router.navigate(['/post', postId]);
+    }
 }
