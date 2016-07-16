@@ -3,33 +3,14 @@ import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class UserApiService {
+export class AlbumApiService {
 
     constructor(private http: Http) {
 
     }
 
-    getUserDataPromise (userId) {
-        const userUrl = `http://jsonplaceholder.typicode.com/users/${userId}`;
-
-        return this.http.get(userUrl)
-            .toPromise()
-            .then(response => response.json())
-            .then((userData) => {
-                return userData;
-            });
-    }
-
-    getUserAlbumsObservable (userId): Observable<any> {
+    getAlbumObservable (userId): Observable<any> {
         const userUrl = `http://jsonplaceholder.typicode.com/users/${userId}/albums`;
-
-        return this.http.get(userUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
-
-    getUserDataObservable (userId): Observable<any> {
-        const userUrl = `http://jsonplaceholder.typicode.com/users/${userId}`;
 
         return this.http.get(userUrl)
             .map(this.extractData)

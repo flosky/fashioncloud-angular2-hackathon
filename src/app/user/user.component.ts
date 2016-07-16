@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserApiService } from '../shared';
 import { UserDetail } from './userDetail';
+import { UserAlbums } from './userAlbums';
 
 @Component({
   selector: 'user-profile',
   providers: [UserApiService],
-  directives: [UserDetail],
+  directives: [UserDetail, UserAlbums],
   styleUrls: ['./user.component.scss'],
   template: `
     <h3>{{user.name}}</h3>
@@ -17,7 +18,7 @@ import { UserDetail } from './userDetail';
 })
 export class UserComponent {
 
-    private userId: string;
+    private userId: number;
     private sub: any;
     private user: any = {};
 
