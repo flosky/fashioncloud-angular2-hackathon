@@ -1,0 +1,23 @@
+<!-- <div>
+    <div class="panel panel-default" *ngFor="let cm of comment">
+        <div class="panel-heading"> Name : {{cm.name}}</div>
+        <div class="panel-body">email :{{cm.email}}
+            body : {{cm.body}}
+        </div>
+    </div>
+
+</div> -->
+
+<div *ngFor="let cm of comment" class="panel-body">
+    <div class="row">
+        <div class="col-xs-3">
+            {{cm.email}}
+        </div>
+        <div class="col-xs-3">
+            {{cm.name}}
+        </div>
+        <div class="col-xs-6">
+            {{cm.body}}
+        </div>
+    </div>
+</div>
