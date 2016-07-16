@@ -29,7 +29,7 @@ export class PostComponent {
          let id = params['id'];
          this.postId = id;
          this.getPost(this.postId);
-         this.onSubmit = this.addPost.bind(this);
+         //this.onSubmit = this.addPost.bind(this);
       });
   }
 
@@ -37,11 +37,8 @@ export class PostComponent {
     this.sub.unsubscribe();
   }
 
-  addPost(post) {
-      this.comment = [...this.comment, post];
-      this.notification = {
-          status: 'success'
-      }
+  addComment(comment) {
+      console.log('Add comment:', comment);
   }
 
   getPost(postId) {

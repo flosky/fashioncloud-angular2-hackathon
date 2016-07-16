@@ -41,12 +41,11 @@ export class CommentInputText {
     }
 
     submitData() {
-        const post = {
-            id: 99,
+        const comment = {
             email: this.email,
             title: this.title,
             comment: this.comment
-        };
-        this.onSubmit(post);
+        }
+        this.onSubmit(comment);
     }
 }
