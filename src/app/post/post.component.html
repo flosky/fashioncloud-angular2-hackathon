@@ -6,9 +6,13 @@
                                 <p class="small">
                                     {{post.title}}
                                 </p>
+								<div>
+							        <fc-comment-input [onSubmit]='onSubmit' [notification]='notification'></fc-comment-input>
+							    </div>
+								<button type="button" class="btn btn-danger">delete</button>
                             </div>
 
-                                <div class="">
+                                <div>
                                     <my-post-comments></my-post-comments>
                                 </div>
                             </div>

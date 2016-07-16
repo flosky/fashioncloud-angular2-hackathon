@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostApiService } from '../shared' ;
-import { CommentsComponent } from './comments/comments.component'
+import { CommentInputText } from '../shared/CommentInputText';
+import { CommentsComponent } from './comments/comments.component';
 
 @Component({
   selector: 'my-post',
   providers: [PostApiService],
   templateUrl: './post.component.html',
-  directives: [CommentsComponent],
+  directives: [CommentsComponent, CommentInputText],
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent {
@@ -15,6 +16,9 @@ export class PostComponent {
     private postId: string;
     private sub: any;
     private post: any = {};
+    private comment: any;
+    public onSubmit;
+    @Input() notification;
 
   constructor(
       private route: ActivatedRoute,
@@ -25,11 +29,19 @@ export class PostComponent {
          let id = params['id'];
          this.postId = id;
          this.getPost(this.postId);
+         this.onSubmit = this.addPost.bind(this);
       });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  addPost(post) {
+      this.comment = [...this.comment, post];
+      this.notification = {
+          status: 'success'
+      }
   }
 
   getPost(postId) {
