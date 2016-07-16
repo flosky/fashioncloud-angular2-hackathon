@@ -3,11 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserApiService } from '../shared';
 import { UserDetail } from './userDetail';
 import { UserPosts } from './posts';
+import { UserAlbums } from './userAlbums';
 
 @Component({
   selector: 'user-profile',
   providers: [UserApiService],
-  directives: [UserDetail, UserPosts],
+  directives: [UserDetail, UserAlbums, UserPosts],
   styleUrls: ['./user.component.scss'],
   template: `
     <h3>{{user.name}}</h3>
@@ -19,7 +20,7 @@ import { UserPosts } from './posts';
 })
 export class UserComponent {
 
-    private userId: string;
+    private userId: number;
     private sub: any;
     private user: any = {};
     private posts: any = [];
@@ -34,7 +35,6 @@ export class UserComponent {
 
         this.sub = this.route.params.subscribe(params => {
             this.userId = params['id'];
-
             this.subscribeToGetUser(this.userId);
             this.subscribeToGetUserPosts(this.userId);
 
