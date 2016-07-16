@@ -3,7 +3,7 @@
   display: block;
 }
 
-header {
+fc-navbar {
   background-color: #fff;
   padding: 16px;
   position: fixed;
@@ -19,9 +19,13 @@ main {
   text-align: center;
   margin-top: 50px;
   display: block;
+  padding: 60px 15px 0;
 }
+
+
 
 footer {
   text-align: center;
   font-size: 0.8em;
+  padding: 60px 15px 0;
 }

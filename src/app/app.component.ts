@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { ApiService } from './shared';
+import {navbarComponent} from './navbar';
 
 import '../style/app.scss';
 
@@ -12,7 +13,7 @@ import '../style/app.scss';
 @Component({
   selector: 'my-app', // <my-app></my-app>
   providers: [ApiService],
-  directives: [...ROUTER_DIRECTIVES],
+  directives: [navbarComponent,ROUTER_DIRECTIVES],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
