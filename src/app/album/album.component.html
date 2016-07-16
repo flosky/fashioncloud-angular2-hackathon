@@ -1,1 +1,20 @@
-<h1>Amazing album number: {{albumId}}</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">Album: {{album.title}}</div>
+  <div class="panel-body">
+
+    <div class="col-xs-8">
+      <img src="http://placehold.it/350x150">
+      <div>
+        <button class="btn btn-default" (click)="edit(album.id)">Edit</button>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div *ngIf="editing">
+        <fc-album-edit [album]="album" (onSave)="onSave($event)" (onCancel)="onCancel($event)"></fc-album-edit>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

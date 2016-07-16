@@ -26,9 +26,9 @@ export class UserAlbums {
   ngOnInit() {
     console.log('Hello Albums');
 
-    this.sub = this.route.params.subscribe(params => {
+    //this.sub = this.route.params.subscribe(params => {
        this.subscribeToGetAlbums(this.userId);
-     });
+     //});
   }
 
   ngOnDestroy() {
