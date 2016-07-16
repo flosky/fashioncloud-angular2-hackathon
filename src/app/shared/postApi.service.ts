@@ -19,7 +19,7 @@ export class PostApiService {
                 return postData;
             });
     }
-
+    //get post title and body
     getPostDataObservable (postId): Observable<any> {
         const postUrl = `http://jsonplaceholder.typicode.com/posts/${postId}`;
 
@@ -41,5 +41,13 @@ export class PostApiService {
         console.error(errMsg); // log to console instead
 
         return Observable.throw(errMsg);
+    }
+    //get comments related to the post
+    getCommentsPostDataObservable (postId): Observable<any> {
+        const postUrl = `http://jsonplaceholder.typicode.com/posts/${postId}/comments`;
+
+        return this.http.get(postUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 }

@@ -1,20 +1,17 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PostApiService } from '../shared' ;
-import { CommentsComponent } from './comments/comments.component'
+import { PostApiService } from '../../shared' ;
 
 @Component({
-  selector: 'my-post',
+  selector: 'my-post-comments',
   providers: [PostApiService],
-  templateUrl: './post.component.html',
-  directives: [CommentsComponent],
-  styleUrls: ['./post.component.scss']
+  templateUrl: './comments.component.html',
 })
-export class PostComponent {
+export class CommentsComponent {
     // variable to use for getting the id
     private postId: string;
     private sub: any;
-    private post: any = {};
+    private comment: any;
 
   constructor(
       private route: ActivatedRoute,
@@ -24,7 +21,7 @@ export class PostComponent {
       this.sub = this.route.params.subscribe( params => {
          let id = params['id'];
          this.postId = id;
-         this.getPost(this.postId);
+         this.getCommentsPost(this.postId);
       });
   }
 
@@ -32,11 +29,11 @@ export class PostComponent {
     this.sub.unsubscribe();
   }
 
-  getPost(postId) {
-      this.api.getPostDataObservable(postId)
-          .subscribe((post) => {
-              console.log('Success Observable:', post);
-              this.post = post;
+  getCommentsPost(postId) {
+      this.api.getCommentsPostDataObservable(postId)
+          .subscribe((comment) => {
+              console.log('Success Observable comment:', comment);
+              this.comment = comment;
           }, (error) => {
               console.log('Error Observable:', error);
           })
