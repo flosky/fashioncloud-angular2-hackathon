@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserApiService } from '../shared';
+import { UserDetail } from './userDetail';
 
 @Component({
   selector: 'user-profile',
   providers: [UserApiService],
+  directives: [UserDetail],
   styleUrls: ['./user.component.scss'],
   template: `
     <h3>{{user.name}}</h3>
-    <div><b>Email:</b> {{user.email}}</div>
-    <div><b>Phone:</b> {{user.phone}}</div>
-    <div><b>Website:</b> {{user.website}}</div>
+    <div><user-detail key="Email" value={{user.email}}></user-detail></div>
+    <div><user-detail key="Phone" value={{user.phone}}></user-detail></div>
+    <div><user-detail key="Website" value={{user.website}}></user-detail></div>
   `
 })
 export class UserComponent {
