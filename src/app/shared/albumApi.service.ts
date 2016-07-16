@@ -9,8 +9,8 @@ export class AlbumApiService {
 
     }
 
-    getAlbumObservable (userId): Observable<any> {
-        const userUrl = `http://jsonplaceholder.typicode.com/users/${userId}/albums`;
+    getAlbumObservable (albumId): Observable<any> {
+        const userUrl = `http://jsonplaceholder.typicode.com/albums/${albumId}`;
 
         return this.http.get(userUrl)
             .map(this.extractData)

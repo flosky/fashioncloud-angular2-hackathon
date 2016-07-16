@@ -3,3 +3,4 @@ export * from './userApi.service';
 export * from './imageApi.service';
 export * from './postApi.service';
 export * from './albumApi.service';
+export * from './album';

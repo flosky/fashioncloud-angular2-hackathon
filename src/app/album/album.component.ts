@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlbumApiService } from '../shared';
+import { AlbumEditComponent } from './album-edit';
 
 
 @Component({
-  selector: 'album',
+  selector: 'fc-album',
   providers: [AlbumApiService],
+  directives: [AlbumEditComponent],
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.scss']
 })
@@ -13,12 +15,14 @@ export class AlbumComponent {
 
   public albumId: number;
   public album: any;
+  public editing: boolean;
   private sub: any;
 
   constructor(
     private route: ActivatedRoute,
     private api: AlbumApiService) {
     this.album = {};
+    this.editing = false;
   }
 
   ngOnInit() {
@@ -33,6 +37,21 @@ export class AlbumComponent {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  edit(albumId) {
+    console.log(albumId);
+    this.editing = true;
+  }
+
+  onSave(newName: string) {
+    console.log('newName 2: ', newName);
+    this.album.title = newName;
+  }
+
+  onCancel(clicked: boolean) {
+    console.log('clicked second: ', clicked);
+    this.editing = false;
   }
 
   subscribeToGetAlbum(albumId) {
